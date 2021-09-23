@@ -2,7 +2,7 @@
 
 This program transforms an input image using six parameters which map to a 2X3 transformation matrix. It is similar to OpenCV's (`wrapAffine`)[https://docs.opencv.org/4.5.3/d4/d61/tutorial_warp_affine.html] function.
 
-Give the following parameters `1.5 1.5 20.0 40.0 20.0 0.5`, which correspond to the following variables:
+Given the following parameters `1.5 1.5 20.0 40.0 20.0 0.5`, which correspond to the following variables:
 
 ```c++
 double colS; // scale of the cols
