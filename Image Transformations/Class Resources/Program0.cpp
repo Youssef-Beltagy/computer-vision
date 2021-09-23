@@ -5,8 +5,8 @@
 
 
 // rotate
-// Preconditions:  input image passed in is correctly allocated/formated
-// Postconditions: returns a new image that is the input rotate 90 degrees CCW
+// Preconditions:  input image passed in is correctly allocated/formatted
+// Postconditions: returns a new image that is the input rotated 90 degrees CCW
 Image rotate(const Image& input) {
 	Image output(input.getCols(), input.getRows());
 
@@ -27,7 +27,7 @@ Image rotate(const Image& input) {
 // Postconditions: Creates an image output.gif that is the rotation and photonegative of test.gif
 int main()
 {
-	Image input("test.gif");
+	Image input("test1.gif");
 	input = input.photonegative();
 
 	Image output = rotate(input);
