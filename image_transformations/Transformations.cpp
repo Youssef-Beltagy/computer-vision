@@ -17,7 +17,7 @@ using namespace std;
 
 
 // interpolate
-// Description: handles biliear interpolation of a point in the image
+// Description: handles bilinear interpolation of a point in the image
 // Preconditions: input is initialized and is an image that has at least one row and one column
 //		row is in the range [0, input.getRows())
 //		col is in the range [0, input.getClos())
