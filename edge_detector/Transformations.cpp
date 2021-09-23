@@ -225,7 +225,7 @@ Image Transformations::detectEdges(const Image& image)
 
 			byte value = 0;
 
-			if(mag.getFloat(row, col) >= 10.0){ // if pixel has a magnitude higer than the threshold
+			if(mag.getFloat(row, col) >= 10.0){ // if pixel has a magnitude higher than the threshold
 
 				float rowa = (dy.getFloat(row, col) / mag.getFloat(row, col));// get vector of maximum ascent of grey intensity
 				float cola = (dx.getFloat(row, col) / mag.getFloat(row, col));

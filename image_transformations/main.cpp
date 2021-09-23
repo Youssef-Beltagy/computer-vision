@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
 	sscanf_s(argv[6], "%lf", &shear);
 
 
-	Image input("test1.gif");// read input
+	Image input("input.gif");// read input
 
 	// Call the transform function to make a new image with the specified transformations.
 	Image output = Transformations::transform(input, colS, rowS, colT, rowT, theta, shear);

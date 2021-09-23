@@ -11,102 +11,6 @@ This file tests the tranformation functions to smooth and detect edges in an ima
 #include "Image.h"
 #include "Transformations.h"
 
-
-void test() {
-
-
-	Image image("test2.gif");// initialize image
-
-	for (int row = 0; row < image.getRows(); row++) {// set floats
-		for (int col = 0; col < image.getCols(); col++) {
-
-			image.setFloat(row, col, image.getPixel(row, col).grey);
-
-		}
-	}
-
-
-	Transformations::smooth(image, 0); // smooth
-
-	Image edges = Transformations::detectEdges(image);
-
-	for (int row = 0; row < image.getRows(); row++) {// set floats
-		for (int col = 0; col < image.getCols(); col++) {
-
-			image.setGrey(row, col, (byte) image.getPixel(row, col).floatVal);
-
-		}
-	}
-
-	image.writeGreyImage("my smooth.gif");
-	edges.writeGreyImage("my Edges.gif");
-
-	{
-		int counterx = 0, countery = 0, countermag = 0, countersmooth = 0, counteredges = 0;
-
-		Image myedges("my Edges.gif");
-		Image mysmooth("my smooth.gif");
-		Image myx("my dx.gif");
-		Image myy("my dy.gif");
-		Image mymag("my mag.gif");
-
-		Image compareedges("edges0.gif");
-		Image comparesmooth("smooth0.gif");
-		Image comparex("gx.gif");// get an image to compare to
-		Image comparey("gy.gif");
-		Image comparemag("gmag.gif");
-
-		for (int row = 0; row < mymag.getRows(); row++) {
-			for (int col = 0; col < mymag.getCols(); col++) {
-
-				byte value = 0;
-
-				if (myedges.getPixel(row, col).grey != compareedges.getPixel(row, col).grey) {
-					counteredges++;
-
-					value = 255;
-
-					cout << endl;
-					cout << "Edge diff found for pixels at (" << col << ", " << row << ")" << endl;
-					cout << "Sample pixle Value: " << (int)compareedges.getPixel(row, col).grey << endl;
-					cout << "output pixel value: " << (int)myedges.getPixel(row, col).grey << endl;
-				}
-
-				myedges.setGrey(row, col, value);
-
-
-				if (mysmooth.getPixel(row, col).grey != comparesmooth.getPixel(row, col).grey) {
-					countersmooth++;
-				}
-
-				if (myy.getPixel(row, col).grey != comparey.getPixel(row, col).grey) {
-					countery++;
-				}
-
-				if (myx.getPixel(row, col).grey != comparex.getPixel(row, col).grey) {
-					counterx++;
-				}
-
-				if (mymag.getPixel(row, col).grey != comparemag.getPixel(row, col).grey) {
-					countermag++;
-				}
-
-			}
-		}
-
-		myedges.writeGreyImage("edge diff.gif");
-
-		std::cout << endl << endl << endl << endl;
-		std::cout << "Num of dx diffs: " << counterx << endl;
-		std::cout << "Num of dy diffs: " << countery << endl;
-		std::cout << "Num of mag diffs: " << countermag << endl;
-		std::cout << "Num of smooth diffs: " << countersmooth << endl;
-		std::cout << "Num of edge diffs: " << counteredges << endl;
-
-	}
-}
-
-
 // main method
 // Description:
 //	tests the smoothing and edge detection
@@ -115,50 +19,48 @@ void test() {
 //	and edges.gif, that is the edges found in test2.gif after smoothing.
 int main(int argc, char* argv[]) {
 
-	test();
+	if (argc != 2) {
+		cout << "This program only works with 1 argument." <<
+			 " Please re-run with one int argument other than the prognam name." << endl;
+		return -1;
+	}
 
-	//if (argc != 3) {
-	//	cout << "This program only works with 1 argument." <<
-	//		 " Please re-run with one int argument other than the prognam name." << endl;
-	//	return -1;
-	//}
+	int iteration; // num of smoothing
+	
 
-	//int iteration; // num of smoothing
-
-	//// read the values from the function arguments.
-	//sscanf_s(argv[1], "%ld", &iteration);
-
-	//Image image("test2.gif");// initialize image
-
-	//// images read from disk are gruanteed to have the grey byte set.
-
-	//for (int row = 0; row < image.getRows(); row++) {// set floats to greys
-	//	for (int col = 0; col < image.getCols(); col++) {
-
-	//		image.setFloat(row, col, (float) image.getPixel(row, col).grey);
-
-	//	}
-	//}
+	// read the values from the function arguments.
+	sscanf_s(argv[1], "%ld", &iteration);
 
 
-	//Transformations::smooth(image, iteration); // smooth
+	Image image("input.gif");// initialize image
 
-	//Image edges = Transformations::detectEdges(image); // find edges
+	// images read from disk are gruanteed to have the grey byte set.
+
+	for (int row = 0; row < image.getRows(); row++) {// set floats to greys
+		for (int col = 0; col < image.getCols(); col++) {
+
+			image.setFloat(row, col, (float) image.getPixel(row, col).grey);
+
+		}
+	}
 
 
-	//for (int row = 0; row < image.getRows(); row++) {// set image to grey again
-	//	for (int col = 0; col < image.getCols(); col++) {
+	Transformations::smooth(image, iteration); // smooth
 
-	//		image.setGrey(row, col, (byte) image.getPixel(row, col).floatVal);
+	Image edges = Transformations::detectEdges(image); // find edges
 
-	//	}
-	//}
 
-	//image.writeGreyImage("smooth.gif");
-	//edges.writeGreyImage("edges.gif");
+	for (int row = 0; row < image.getRows(); row++) {// set image to grey again
+		for (int col = 0; col < image.getCols(); col++) {
 
-	//cout << "Program end" << endl;
+			image.setGrey(row, col, (byte) image.getPixel(row, col).floatVal);
 
-	//return 0;
+		}
+	}
+
+	image.writeGreyImage("smooth.gif");
+	edges.writeGreyImage("edges.gif");
+
+	return 0;
 
 }
