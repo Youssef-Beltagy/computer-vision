@@ -6,8 +6,8 @@ Given the number of smoothings, the program detects the edges in the input image
 
 The program will transform this input image
 
-![](https://computerp-vision.ybeltagy.com/pics/edge_input.gif)
+![](https://computer-vision.ybeltagy.com/pics/edge_input.gif)
 
 To this output image
 
-![](https://computerp-vision.ybeltagy.com/pics/edge_output.gif)
+![](https://computer-vision.ybeltagy.com/pics/edge_output.gif)

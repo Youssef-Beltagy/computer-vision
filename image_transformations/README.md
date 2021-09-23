@@ -15,8 +15,8 @@ double shear;// shear factor
 
 The program will transform this input image
 
-![](https://computerp-vision.ybeltagy.com/pics/transformations_input.gif)
+![](https://computer-vision.ybeltagy.com/pics/transformations_input.gif)
 
 To this output image
 
-![](https://computerp-vision.ybeltagy.com/pics/transformations_output.gif)
+![](https://computer-vision.ybeltagy.com/pics/transformations_output.gif)
