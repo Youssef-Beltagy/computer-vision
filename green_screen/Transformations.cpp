@@ -89,14 +89,14 @@ void Transformations::greenScreen(Mat& output, const Mat& background, uchar size
 
 	// expand bucket by considering one bucket away in each direction from the mode color
 	// for every color.
-	uchar blueLimits[2] = { saturate_cast<uchar>(ceil(maxColor[0] - bucketSize)),
-							saturate_cast<uchar>(floor(maxColor[0] + bucketSize)) };
+	uchar blueLimits[2] = { saturate_cast<uchar>(maxColor[0] - bucketSize),
+							saturate_cast<uchar>(maxColor[0] + bucketSize) };
 
-	uchar greenLimits[2] = { saturate_cast<uchar>(ceil(maxColor[1] - bucketSize)),
-							saturate_cast<uchar>(floor(maxColor[1] + bucketSize)) };
+	uchar greenLimits[2] = { saturate_cast<uchar>(maxColor[1] - bucketSize),
+							saturate_cast<uchar>(maxColor[1] + bucketSize) };
 
-	uchar redLimits[2] = { saturate_cast<uchar>(ceil(maxColor[2] - bucketSize)),
-							saturate_cast<uchar>(floor(maxColor[2] + bucketSize)) };
+	uchar redLimits[2] = { saturate_cast<uchar>(maxColor[2] - bucketSize),
+							saturate_cast<uchar>(maxColor[2] + bucketSize) };
 	
 	// loop through image and replace background
 	for (int row = 0; row < output.rows; row++) {

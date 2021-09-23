@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 		imwrite("overlay.jpg", output);
 
 		namedWindow("overlay", WINDOW_NORMAL);
-		resizeWindow("overlay", output.cols, output.rows);
+		resizeWindow("overlay", output.cols / 4, output.rows / 4);
 		imshow("overlay", output);
 
 
